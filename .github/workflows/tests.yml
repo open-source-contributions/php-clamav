@@ -15,7 +15,11 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
       - name: ClamAV setup
-        run: docker-compose up -d && sleep 60
+        run: docker-compose up -d
+      - name: Sleep 60 seconds
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 60s
       - name: Install dependencies
         run: composer update -n
       - name: Run tests
